@@ -3,16 +3,35 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { TetiereComponent } from './tetiere/tetiere.component';
 import { FooterComponent } from './footer/footer.component';
+import { RecapComponent } from './recap/recap.component';
 import { CompteComponent } from './compte/compte.component';
+import { CatalogueComponent } from './catalogue/catalogue.component';
+
+
 import { TelPipe } from "./models/telpipe";
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { RecapComponent } from './recap/recap.component';
+
+
+import { RouterModule, Routes } from '@angular/router';
+
+
+const appRoutes: Routes = [
+  { path: 'catalogue', component: CatalogueComponent },
+  { path: 'compte',      component: CompteComponent },
+  { path: '',
+    redirectTo: '/compte',
+    pathMatch: 'full'
+  }
+];
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +40,8 @@ import { RecapComponent } from './recap/recap.component';
     FooterComponent,
     CompteComponent,
     RecapComponent,
-    TelPipe
+    TelPipe,
+    CatalogueComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +50,11 @@ import { RecapComponent } from './recap/recap.component';
     ReactiveFormsModule, 
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(), 
+    RouterModule.forRoot(
+      appRoutes,
+      //{ enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
