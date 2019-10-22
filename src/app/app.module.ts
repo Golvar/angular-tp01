@@ -13,11 +13,12 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 
 import { TelPipe } from "./models/telpipe";
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
+import { ApiService } from './api.service';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -54,9 +55,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       //{ enableTracing: true } // <-- debugging purposes only
-    )
+    ),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
