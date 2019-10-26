@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   { path: 'catalogue', component: CatalogueComponent },
   { path: 'compte',      component: CompteComponent },
   { path: '',
-    redirectTo: '/compte',
+    redirectTo: '/catalogue',
     pathMatch: 'full'
   }
 ];
