@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { NgxsModuleOptions } from '@ngxs/store';
+import { NgxsModule } from '@ngxs/store';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -8,7 +11,6 @@ import { TetiereComponent } from './tetiere/tetiere.component';
 import { FooterComponent } from './footer/footer.component';
 import { RecapComponent } from './recap/recap.component';
 import { CompteComponent } from './compte/compte.component';
-import { CatalogueComponent } from './catalogue/catalogue.component';
 
 
 import { TelPipe } from "./models/telpipe";
@@ -20,17 +22,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ApiService } from './api.service';
 
-import { RouterModule, Routes } from '@angular/router';
-
-
-const appRoutes: Routes = [
-  { path: 'catalogue', component: CatalogueComponent },
-  { path: 'compte',      component: CompteComponent },
-  { path: '',
-    redirectTo: '/catalogue',
-    pathMatch: 'full'
-  }
-];
 
 
 
@@ -42,7 +33,6 @@ const appRoutes: Routes = [
     CompteComponent,
     RecapComponent,
     TelPipe,
-    CatalogueComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +42,9 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(), 
-    RouterModule.forRoot(
-      appRoutes,
-      //{ enableTracing: true } // <-- debugging purposes only
+    NgxsModule.forRoot(
     ),
+    
     HttpClientModule
   ],
   providers: [ApiService],
