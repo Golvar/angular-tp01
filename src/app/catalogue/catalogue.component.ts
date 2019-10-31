@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { ApiService } from '../api.service';
 import { Product } from '../models/product';
 import { filter } from 'rxjs/operators';
-
+import { ProductState } from 'src/app/store/states/product.state';
+import { AddProduct } from 'src/app/store/actions/product.action';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-catalogue',
@@ -14,9 +16,15 @@ export class CatalogueComponent implements OnInit {
 
   products : Product[];
   filteredProducts : Product[];
+  nbProduct: number;
 
   private _searchTerm:string;
 
+
+  constructor(private apiService : ApiService, private store : Store) {
+    this.store.select(state => state.product.panier).subscribe (u => this.nbProduct = u.length);
+   }
+   
   get searchTerm():string{
     return this._searchTerm;
   }
@@ -31,7 +39,7 @@ export class CatalogueComponent implements OnInit {
       product.name.toLowerCase().indexOf(searchParam.toLowerCase()) !== -1);
   }
 
-  constructor(private apiService : ApiService) { }
+  
 
   ngOnInit() {
     this.apiService.getProducts().subscribe(
@@ -43,4 +51,10 @@ export class CatalogueComponent implements OnInit {
     
   }
 
+  onClick (product) {
+    this.addProduct (product);
+  }
+
+
+  addProduct(product) { this.store.dispatch(new AddProduct(product)); }
 }

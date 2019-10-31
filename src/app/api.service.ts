@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Product } from './models/product';
 import { environment } from '../environments/environment';
 
+import { tap,map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,4 +17,9 @@ export class ApiService {
     public getProducts () : Observable<Product[]> {
         return this.http.get<Product[]>(environment.backendProduct);
     }
+
+    getProduct () : Observable<Product[]> {
+      return this.http.get<Product[]> ( environment.backendProduct).pipe (tap((value) => console.log(value)) );
+    }
 }
+
