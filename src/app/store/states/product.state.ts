@@ -1,6 +1,6 @@
 import { AddProduct, DelProduct, DetailProduct } from '../actions/product.action';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { Product } from 'src/app/models/product';
+import { Product } from '../../models/product';
 
 export interface ProductStateModel {
     panier: Product[];

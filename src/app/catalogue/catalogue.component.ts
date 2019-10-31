@@ -3,8 +3,8 @@ import { Observable, from } from 'rxjs';
 import { ApiService } from '../api.service';
 import { Product } from '../models/product';
 import { filter } from 'rxjs/operators';
-import { ProductState } from 'src/app/store/states/product.state';
-import { AddProduct } from 'src/app/store/actions/product.action';
+import { ProductState } from '../store/states/product.state';
+import { AddProduct } from '../store/actions/product.action';
 import { Store } from '@ngxs/store';
 import {Router} from '@angular/router'
 
