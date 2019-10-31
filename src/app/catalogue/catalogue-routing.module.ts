@@ -7,7 +7,9 @@ const routes: Routes = [
   { path: '', children: [
       { path: '', component: CatalogueComponent },
     ]  
-  }
+  },
+  { path:"detail/:name",
+    loadChildren: '../detail/detail.module#DetailModule'  }
 ];
 
 
@@ -19,6 +21,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    RouterModule
  ]
 
 })

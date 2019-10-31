@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { ProductState } from 'src/app/store/states/product.state';
 import { AddProduct } from 'src/app/store/actions/product.action';
 import { Store } from '@ngxs/store';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-catalogue',
@@ -21,7 +22,7 @@ export class CatalogueComponent implements OnInit {
   private _searchTerm:string;
 
 
-  constructor(private apiService : ApiService, private store : Store) {
+  constructor(private apiService : ApiService, private store : Store, private router : Router) {
     this.store.select(state => state.product.panier).subscribe (u => this.nbProduct = u.length);
    }
    
@@ -57,4 +58,6 @@ export class CatalogueComponent implements OnInit {
 
 
   addProduct(product) { this.store.dispatch(new AddProduct(product)); }
+
+ 
 }

@@ -15,3 +15,8 @@ export class DelProduct {
     static readonly type = '[Product] DelProduct';
     constructor(public product: Product) {}
 }
+
+export class DetailProduct {
+    static readonly type = '[Product] DetailProduct';
+    constructor(public product: Product) {}
+}

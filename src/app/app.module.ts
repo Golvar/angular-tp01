@@ -18,7 +18,6 @@ import { NgxsModule } from '@ngxs/store';
 import { ProductState } from './store/states/product.state';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

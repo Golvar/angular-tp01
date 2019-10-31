@@ -21,5 +21,9 @@ export class ApiService {
     getProduct () : Observable<Product[]> {
       return this.http.get<Product[]> ( environment.backendProduct).pipe (tap((value) => console.log(value)) );
     }
+
+    public getOneProduct(name:String) : Observable<Product[]> {
+      return  this.http.get<Product[]> (environment.backendProduct).pipe(map(p => p.filter(p=>p.name == name)));
+    }
 }
 
